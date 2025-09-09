@@ -5,16 +5,18 @@ class Usuario {
     char sexo;
     String cargo;
     int edad;
+    float salario;
 
-    public Usuario(String nombre, char sexo, String cargo, int edad) {
+    public Usuario(String nombre, char sexo, String cargo, int edad, float salario) {
         this.nombre = nombre;
         this.sexo = sexo;
         this.cargo = cargo;
         this.edad = edad;
+        this.salario = salario;
     }
 
     public void mostrar(int index) {
-        System.out.printf("%-3d %-15s %-5s %-15s %-3d\n",index, nombre, sexo, cargo, edad);
+        System.out.printf("%-3d %-15s %-5s %-15s %-3d %f\n",index, nombre, sexo, cargo, edad,salario);
     }
 }
 
@@ -72,9 +74,11 @@ public class Arreglos {
         String cargo = input.nextLine();
         System.out.print("Edad: ");
         int edad = input.nextInt();
+        System.out.print("Salario: ");
+        float salario = input.nextFloat();
         input.nextLine();
 
-        usuarios[numUsuarios] = new Usuario(nombre, sexo, cargo, edad);
+        usuarios[numUsuarios] = new Usuario(nombre, sexo, cargo, edad, salario);
         numUsuarios++;
         System.out.println("Usuario agregado exitosamente.");
     }
@@ -96,11 +100,12 @@ public class Arreglos {
             System.out.println("2 - Cambiar sexo");
             System.out.println("3 - Cambiar cargo");
             System.out.println("4 - Cambiar edad");
+            System.out.println("5 - Cambiar salario");
             System.out.print("Seleccione opción: ");
-            int op = input.nextInt();
+            int opcion = input.nextInt();
             input.nextLine();
 
-            switch (op) {
+            switch (opcion) {
                 case 1:
                     System.out.print("Nuevo nombre: ");
                     u.nombre = input.nextLine();
@@ -119,6 +124,11 @@ public class Arreglos {
                     u.edad = input.nextInt();
                     input.nextLine();
                     break;
+                case 5:
+                    System.out.print("Nuevo salario: ");
+                    u.salario = input.nextFloat();
+                    input.nextLine();
+                    break;    
                 default:
                     System.out.println("Opción inválida.");
             }
@@ -157,8 +167,8 @@ public class Arreglos {
             System.out.println("No hay usuarios registrados.");
             return;
         }
-        System.out.println("\n#   Nombre           Sexo  Cargo           Edad");
-        System.out.println("--------------------------------------------------");
+        System.out.println("\n#   Nombre                Sexo      Cargo                Edad       salario");
+        System.out.println("----------------------------------------------------------------");
         for (int i = 0; i < numUsuarios; i++) {
             usuarios[i].mostrar(i + 1);
         }
