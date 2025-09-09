@@ -15,8 +15,8 @@ class Usuario {
         this.salario = salario;
     }
 
-    public void mostrar(int index) {
-        System.out.printf("%-3d %-15s %-5s %-15s %-3d %f\n",index, nombre, sexo, cargo, edad,salario);
+    public void mostrar(int indice) {
+        System.out.printf("%-3d %-15s %-5s %-15s %-3d %.0f\n",indice, nombre, sexo, cargo, edad,salario);
     }
 }
 
