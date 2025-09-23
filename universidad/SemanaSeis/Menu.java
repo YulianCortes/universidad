@@ -1,35 +1,14 @@
 package SemanaSeis;
 import java.util.Scanner;
-
-import OrientaObjetos.MostrarUsuarios;
-
 import java.util.ArrayList;
- 
-public class Ejemplo
-{   public static void menuPpal(){
-    boolean salir = false;
-    while (salir){
-    
-	   ArrayList <String> menu1 = new ArrayList<String>();
-		menu1.add("Helado de crema");
-		menu1.add("Helado naturales");
-		menu1.add("Gourmets");
-		menu1.add("con cremas calientes");
-		menu1.add("Terminar");
-		int opcion = menu(menu1);
-		switch (opcion){
-		    case 1:
-                    break;    
-         default: System.out.println("Opción inválida.");
-         salir = true;
-		            break;
-                
-            
-		}
-	}
+public class Menu{
+    private char caracterMarco ='*';
+    private int ancho 
+    public Menu(){
+
     }
-	
-	public static int menu(ArrayList<String> opciones){
+    //metodo para mostrar el menu
+    public static int menu(ArrayList<String> opciones){
 	    int opcion;
 	    char simboloOpcion = '1';
 		boolean MOSTRAR = 0
@@ -50,5 +29,10 @@ public class Ejemplo
 	} simboloOpcion = '1';
 	    return opcion;
 	}
+    private String horizontal(int nroCaracteres){
+        String borde ="";
+        for (int i = 0; i < nroCaracteres; i++){
+            borde += caracterMarco;
+        }
+    }
 }
- 
