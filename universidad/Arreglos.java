@@ -28,9 +28,9 @@ public class Arreglos {
 
     public static void main(String[] args) {
         boolean activo = true;
-
-        while (activo) {
+            while (activo) {
             int opcion = menu();
+            
             switch (opcion) {
                 case 1: agregarUsuario(); break;
                 case 2: editarUsuario(); break;
