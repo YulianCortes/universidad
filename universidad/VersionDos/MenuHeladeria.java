@@ -42,7 +42,7 @@ public class MenuHeladeria {
                     break;
 
                 case 4: // Salir
-                    System.out.println("👋 Gracias por usar la heladería!");
+                    System.out.println("🍦 Gracias por usar la heladería!😘");
                     break;
 
                 default:
