@@ -15,7 +15,6 @@ public class Helado {
         this.pago = pago;
     }
     // toString para mostrar bonito el pedido
-    @Override
     public String toString() {
         return "Cliente: " + cliente +
                 " | Tipo: " + tipo +
