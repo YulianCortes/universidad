@@ -34,7 +34,7 @@ public class Main {
 
         boolean salir = false;
         while (!salir) {
-            System.out.println("\n=== MENÚ PRINCIPAL ===");
+            System.out.println("\n*** MENÚ PRINCIPAL ***");
             System.out.println("1. Hacer pedido");
             System.out.println("2. Ver estado de mesas");
             System.out.println("3. Cerrar cuenta de una mesa");
