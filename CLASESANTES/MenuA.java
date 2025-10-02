@@ -1,3 +1,4 @@
+package CLASESANTES;
 // ejercisio uno 
 import java.util.Scanner;
 public class MenuA {

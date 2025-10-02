@@ -1,3 +1,4 @@
+package HELADERIA;
 import java.util.ArrayList;
  
 public class Helado{
@@ -24,6 +25,7 @@ public class Helado{
         return precioTotal;
     }
     
+ 
     // Setters
     public void setPrecio(float precio){
         this.precio = precio;
@@ -62,3 +64,4 @@ public class Helado{
     }
  
 }
+ 

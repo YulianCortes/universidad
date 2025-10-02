@@ -1,3 +1,4 @@
+package CLASESANTES;
 // tarea menu tras otro menu utilizando switch 
 import java.util.Scanner;
 public class MenuC {

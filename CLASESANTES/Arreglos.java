@@ -1,3 +1,4 @@
+package CLASESANTES;
 import java.util.Scanner;
 
 class Usuario {

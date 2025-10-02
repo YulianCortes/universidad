@@ -1,3 +1,4 @@
+package CLASESANTES;
 public class For{
     public static void main(String[] args) {
         System.out.println("Clases for");

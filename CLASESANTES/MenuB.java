@@ -1,3 +1,4 @@
+package CLASESANTES;
 //ejercisio dos invocar menu () y cambiar void por int 
 import java.util.Scanner;
 public class MenuB {
