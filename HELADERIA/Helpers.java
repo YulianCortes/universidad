@@ -1,150 +1,192 @@
 package HELADERIA;
 import java.util.ArrayList;
 import java.util.Scanner;
- 
+
 public class Helpers {
- 
-    public static ArrayList<Heladeria> crudHeladeria(ArrayList<Heladeria> listaHeladerias){
-        int opcion = 0;
-        @SuppressWarnings("resource")
+
+    public Heladeria crearHeladeria(){
         Scanner input = new Scanner(System.in);
- 
-        Menus menuCrud = new Menus(40, '-', '1');
-        ArrayList<String> options = new ArrayList<String>();
-        options.add("Crear");
-        options.add("Ver");
-        options.add("Editar");
-        options.add("Eliminar");
-        options.add("Volver");
-        System.out.println("CRUD Heladeria");
-        opcion = menuCrud.createMenu(options, false);
-        switch (opcion) {
-            case '1':
-                System.out.println("Crear Heladeria");
-                System.out.println("Escriba el ID de la Heladeria: ");
-                int id = input.nextInt();
-                System.out.println("Escriba la direccion de la Heladeria: ");
-                String direccion = input.next();
-                Heladeria nuevaHeladeria = new Heladeria(id, direccion);
-                listaHeladerias.add(nuevaHeladeria);
+        int id;
+        while(true){
+            System.out.println("Crear Heladeria");
+            System.out.println("Escribir el ID de la heladeria: ");
+            if(input.hasNextInt()){
+                id = input.nextInt();
+                input.nextLine();
                 break;
-            case '2':
-                System.out.println("Ver Heladeria");
-                System.out.println("Escriba el ID de la Heladeria: ");
-                id = input.nextInt();       // lee el ID que se va a buscar en el arraylist
-                boolean encontrado = false;
-                for(Heladeria heladeria : listaHeladerias){
-                    if(heladeria.id == id){
-                        System.out.println("ID: " + heladeria.id);
-                        System.out.println("Direccion: " + heladeria.getDireccion());
-                        System.out.println("Helados disponibles: " + heladeria.getListaHeladosDisponibles());
-                        System.out.println("Malteadas disponibles: " + heladeria.getListaMalteadasDisponibles());
-                        System.out.println("Toppings: " + heladeria.getListaToppings());
-                        System.out.println("Pedidos: " + heladeria.getListaPedidos());
-                        encontrado = true;
-                    }
-                }
-                if(encontrado == false){
-                    System.out.println("No se encontro la heladeria");
-                }
-                break;
-
-            case '3': //  NUEVO: Editar Heladeria
-                editarHeladeria(listaHeladerias);
-                break;
-
-            default:
-                break;
+            } else {
+                System.out.println("Debe ingresar un número válido.");
+                input.nextLine();
+            }
         }
- 
-        return listaHeladerias;
+        System.out.println("Escribir la direccion de la Heladeria: ");
+        String direccion = input.nextLine();
+        return new Heladeria(id, direccion);        
     }
- 
-    // 🔹 NUEVO MÉTODO: Editar Heladeria
-    public static void editarHeladeria(ArrayList<Heladeria> listaHeladerias) {
-        @SuppressWarnings("resource")
+
+    public void editarHeladeria(Heladeria h){
         Scanner input = new Scanner(System.in);
-        System.out.println("Editar Heladeria");
-        System.out.print("Escribe el ID de la heladería que quieres editar: ");
-        int id = input.nextInt();
-        input.nextLine(); // limpiar buffer
+        System.out.println("Editar Heladeria ID " + h.id);
+        System.out.println("Dirección actual: " + h.getDireccion());
+        System.out.print("Nueva dirección: ");
+        String dir = input.nextLine();
+        h.setDireccion(dir);
+        System.out.println("Heladeria actualizada.");
+    }
 
-        Heladeria heladeriaAEditar = null;
-        for (Heladeria h : listaHeladerias) {
-            if (h.id == id) {
-                heladeriaAEditar = h;
-                break;
-            }
+    public Helado crearHelado(){
+        Scanner input = new Scanner(System.in);
+        int id, tipo;
+        float precio;
+
+        while(true){
+            System.out.println("Crear Helado");
+            System.out.println("Escribir el ID del helado: ");
+            if(input.hasNextInt()){ id = input.nextInt(); input.nextLine(); break;}
+            else {System.out.println("Debe ingresar un número válido."); input.nextLine();}
         }
 
-        if (heladeriaAEditar == null) {
-            System.out.println("⚠ Heladería no encontrada.");
-            return;
+        System.out.println("Escriba el nombre del helado: ");
+        String nombre = input.nextLine();
+
+        while(true){
+            System.out.println("Escriba el precio del Helado:");
+            if(input.hasNextFloat()){ precio = input.nextFloat(); input.nextLine(); break;}
+            else {System.out.println("Debe ingresar un número válido."); input.nextLine();}
         }
 
-        int opcion;
+        while(true){
+            System.out.println("Escriba el tipo del helado (1: Vaso, 2: Cono, 3: Paleta):");
+            if(input.hasNextInt()){ tipo = input.nextInt(); input.nextLine(); break;}
+            else {System.out.println("Debe ingresar un número válido."); input.nextLine();}
+        }
+
+        ArrayList<String> sabores = new ArrayList<>();
+        String opcionSabor;
         do {
-            System.out.println("\n--- EDITAR HELADERÍA ---");
-            System.out.println("1. Cambiar dirección");
-            System.out.println("2. Editar helados disponibles");
-            System.out.println("3. Editar malteadas disponibles");
-            System.out.println("4. Editar toppings disponibles");
-            System.out.println("5. Editar pedidos existentes");
-            System.out.println("6. Salir");
-            System.out.print("Elige una opción: ");
-            opcion = input.nextInt();
-            input.nextLine(); // limpiar buffer
+            System.out.println("Ingrese un sabor (o 'fin' para terminar): ");
+            opcionSabor = input.nextLine();
+            if(!opcionSabor.equalsIgnoreCase("fin")) sabores.add(opcionSabor);
+        } while(!opcionSabor.equalsIgnoreCase("fin"));
 
-            switch (opcion) {
-                case 1:
-                    System.out.print("Nueva dirección: ");
-                    String nuevaDireccion = input.nextLine();
-                    heladeriaAEditar.setDireccion(nuevaDireccion);
-                    System.out.println("✅ Dirección actualizada.");
-                    break;
+        return new Helado(id, nombre, precio, sabores, tipo);        
+    }
 
-                case 2:
-                    System.out.println("Helados disponibles: " + heladeriaAEditar.getListaHeladosDisponibles());
-                    System.out.println("⚠ Aquí podrías editar helados...");
-                    break;
+    public void editarHelado(Helado h){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Editar Helado ID " + h.id);
+        System.out.println("Nombre actual: " + h.nombre);
+        System.out.print("Nuevo nombre: ");
+        h.nombre = input.nextLine();
 
-                case 3:
-                    System.out.println("Malteadas disponibles: " + heladeriaAEditar.getListaMalteadasDisponibles());
-                    System.out.println("⚠ Aquí podrías editar malteadas...");
-                    break;
+        System.out.println("Precio actual: " + h.getPrecio());
+        System.out.print("Nuevo precio: ");
+        if(input.hasNextFloat()) h.setPrecio(input.nextFloat());
+        input.nextLine();
+        System.out.println("Helado actualizado.");
+    }
 
-                case 4:
-                    System.out.println("Toppings disponibles: " + heladeriaAEditar.getListaToppings());
-                    System.out.println("⚠ Aquí podrías editar toppings...");
-                    break;
+    public Malteada crearMalteada() {
+        Scanner input = new Scanner(System.in);
+        int id;
+        float precio;
 
-                case 5:
-                    if (heladeriaAEditar.getListaPedidos().isEmpty()) {
-                        System.out.println("No hay pedidos en esta heladería.");
-                    } else {
-                        System.out.println("Pedidos existentes:");
-                        int i = 1;
-                        for (Pedido p : heladeriaAEditar.getListaPedidos()) {
-                            System.out.println(i + ". Mesa: " + p.mesa + ", Propina: " + p.propina);
-                            i++;
-                        }
-                        System.out.print("¿Cuál pedido quieres editar? (0 para cancelar): ");
-                        int pedidoIndex = input.nextInt() - 1;
-                        input.nextLine();
-                        if (pedidoIndex >= 0 && pedidoIndex < heladeriaAEditar.getListaPedidos().size()) {
-                            Pedido pedido = heladeriaAEditar.getListaPedidos().get(pedidoIndex);
-                            pedido.editarPedido(); // 🔹 usa el método de Pedido
-                        }
-                    }
-                    break;
+        while(true){
+            System.out.println("Crear Malteada");
+            System.out.println("Escribir el ID de la malteada: ");
+            if(input.hasNextInt()){ id = input.nextInt(); input.nextLine(); break;}
+            else {System.out.println("Debe ingresar un número válido."); input.nextLine();}
+        }
 
-                case 6:
-                    System.out.println("Saliendo de edición...");
-                    break;
+        while(true){
+            System.out.println("Escriba el precio de la malteada:");
+            if(input.hasNextFloat()){ precio = input.nextFloat(); input.nextLine(); break;}
+            else {System.out.println("Debe ingresar un número válido."); input.nextLine();}
+        }
 
-                default:
-                    System.out.println("Opción inválida.");
-            }
-        } while (opcion != 6);
+        ArrayList<String> sabores = new ArrayList<>();
+        String opcionSabor;
+        do {
+            System.out.println("Ingrese un sabor (o 'fin' para terminar): ");
+            opcionSabor = input.nextLine();
+            if(!opcionSabor.equalsIgnoreCase("fin")) sabores.add(opcionSabor);
+        } while(!opcionSabor.equalsIgnoreCase("fin"));
+
+        return new Malteada(id, precio, sabores);
+    }
+
+    public void editarMalteada(Malteada m){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Editar Malteada ID " + m.id);
+        System.out.println("Precio actual: " + m.getPrecio());
+        System.out.print("Nuevo precio: ");
+        if(input.hasNextFloat()) m.setPrecio(input.nextFloat());
+        input.nextLine();
+        System.out.println("Malteada actualizada.");
+    }
+
+    public Toppings crearTopping() {
+        Scanner input = new Scanner(System.in);
+        int id;
+        float precio;
+        System.out.println("Crear Topping");
+
+        while(true){
+            System.out.println("Escribir ID del topping:");
+            if(input.hasNextInt()){ id = input.nextInt(); input.nextLine(); break;}
+            else {System.out.println("Debe ingresar un número válido."); input.nextLine();}
+        }
+
+        System.out.println("Nombre del topping:");
+        String nombre = input.nextLine();
+
+        while(true){
+            System.out.println("Precio del topping:");
+            if(input.hasNextFloat()){ precio = input.nextFloat(); input.nextLine(); break;}
+            else {System.out.println(" Debe ingresar un número válido."); input.nextLine();}
+        }
+
+        Toppings topping = new Toppings();
+        topping.id = id;
+        topping.setNombre(nombre);
+        topping.setPrecio(precio);
+
+        return topping;
+    }
+
+    public void editarTopping(Toppings t){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Editar Topping ID " + t.id);
+        System.out.println("Nombre actual: " + t.getNombre());
+        System.out.print("Nuevo nombre: ");
+        t.setNombre(input.nextLine());
+        System.out.println("Precio actual: " + t.getPrecio());
+        System.out.print("Nuevo precio: ");
+        if(input.hasNextFloat()) t.setPrecio(input.nextFloat());
+        input.nextLine();
+        System.out.println("Topping actualizado.");
+    }
+
+    public Pedido crearPedido(int mesa) {
+        return new Pedido(mesa);
+    }
+
+    public Heladeria buscarHeladeria(ArrayList<Heladeria> lista, int id){
+        for(Heladeria h : lista){
+            if(h.id == id) return h;
+        }
+        System.out.println("Heladeria no encontrada.");
+        return null;
+    }
+
+    public void mostrarProductosHeladeria(Heladeria h){
+        System.out.println("Helados disponibles:");
+        for(Helado hel : h.getListaHeladosDisponibles()) System.out.println("- " + hel.nombre);
+        System.out.println("Malteadas disponibles:");
+        for(Malteada mal : h.getListaMalteadasDisponibles()) System.out.println("- Precio: " + mal.calcularPrecio());
+        System.out.println("Toppings disponibles:");
+        for(Toppings top : h.getListaToppings()) System.out.println("- " + top.getNombre());
+        System.out.println("Pedidos actuales:");
+        for(Pedido ped : h.getListaPedidos()) System.out.println("- Mesa: " + ped.mesa + " Total: " + ped.calcularCuenta());
     }
 }

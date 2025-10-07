@@ -39,7 +39,7 @@ public class Pedido {
     public void addToppingToHelado(Toppings topping){
         if(!this.listaHelados.isEmpty()){
             this.listaHelados.get(this.listaHelados.size()-1).addTopping(topping.getNombre());
-            System.out.println("✅ Topping agregado al helado: " + topping.getNombre());
+            System.out.println("Topping agregado al helado: " + topping.getNombre());
         } else {
             System.out.println("⚠ No hay helados en el pedido.");
         }
@@ -48,7 +48,7 @@ public class Pedido {
     public void addToppingToMalteada(Toppings topping){
         if(!this.listaMalteada.isEmpty()){
             this.listaMalteada.get(this.listaMalteada.size()-1).addTopping(topping.getNombre());
-            System.out.println("✅ Topping agregado a la malteada: " + topping.getNombre());
+            System.out.println("Topping agregado a la malteada: " + topping.getNombre());
         } else {
             System.out.println("⚠ No hay malteadas en el pedido.");
         }
@@ -91,12 +91,12 @@ public class Pedido {
                                 java.util.ArrayList<String> nuevosSabores = new java.util.ArrayList<>();
                                 nuevosSabores.add(sabor);
                                 helado.setSabores(nuevosSabores);
-                                System.out.println("✅ Sabores actualizados.");
+                                System.out.println("Sabores actualizados.");
                             } else if (sub == 2) {
                                 System.out.println("Escribe el nombre del topping:");
                                 String topping = sc.nextLine();
                                 helado.addTopping(topping);
-                                System.out.println("✅ Topping agregado.");
+                                System.out.println("Topping agregado.");
                             }
                         }
                     }
@@ -123,12 +123,12 @@ public class Pedido {
                                 java.util.ArrayList<String> nuevosSabores = new java.util.ArrayList<>();
                                 nuevosSabores.add(sabor);
                                 malteada.setSabores(nuevosSabores);
-                                System.out.println("✅ Sabores actualizados.");
+                                System.out.println("Sabores actualizados.");
                             } else if (sub == 2) {
                                 System.out.println("Escribe el nombre del topping:");
                                 String topping = sc.nextLine();
                                 malteada.addTopping(topping);
-                                System.out.println("✅ Topping agregado.");
+                                System.out.println("Topping agregado.");
                             }
                         }
                     }
@@ -138,7 +138,7 @@ public class Pedido {
                     System.out.println("Propina actual: " + propina);
                     System.out.print("Escribe el nuevo valor de propina: ");
                     propina = sc.nextFloat();
-                    System.out.println("✅ Propina actualizada.");
+                    System.out.println("Propina actualizada.");
                     break;
 
                 case 4:
@@ -146,7 +146,7 @@ public class Pedido {
                     break;
 
                 default:
-                    System.out.println("❌ Opción inválida.");
+                    System.out.println(" Opción inválida.");
             }
         } while (opcion != 4);
     }

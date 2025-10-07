@@ -3,14 +3,16 @@ import java.util.ArrayList;
  
 public class Helado{
     public int id;
+    public String nombre;
     public float precio;
     private float precioTopping;
     private ArrayList<String> sabores;
     private ArrayList<String> toppings;
     private int tipo;
     // Constructor de clase
-    public Helado(int id, float precio, ArrayList<String> sabores, int tipo){
+    public Helado(int id, String nombre, float precio, ArrayList<String> sabores, int tipo){
         this.id = id;
+        this.nombre = nombre;
         this.precio = precio;
         this.sabores = sabores;
         this.tipo = tipo;
@@ -63,5 +65,6 @@ public class Helado{
         return this.precioTopping;
     }
  
-}
  
+ 
+}
